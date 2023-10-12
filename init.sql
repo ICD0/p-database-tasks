@@ -122,7 +122,7 @@ CREATE TABLE user_workspaces (
 -- Table: users
 CREATE TABLE users (
     user_id int  NOT NULL,
-    username varchar(50)  NOT NULL CHECK (unique),
+    username varchar(50)  NOT NULL UNIQUE,
     email varchar(50)  NOT NULL,
     CONSTRAINT users_pk PRIMARY KEY (user_id)
 );
