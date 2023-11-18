@@ -1,9 +1,16 @@
+-- schemas
+CREATE SCHEMA auth;
 
+CREATE SCHEMA acn;
+
+CREATE SCHEMA app;
+
+CREATE SCHEMA audit;
 
 -- tables
 -- Table: History
-CREATE TABLE History (
-    history_id int  NOT NULL,
+CREATE TABLE audit.History (
+    history_id SERIAL NOT NULL,
     updated_at timestamp  NOT NULL,
     action_type varchar(30)  NOT NULL,
     object_type varchar(30)  NOT NULL,
@@ -13,14 +20,14 @@ CREATE TABLE History (
 );
 
 -- Table: app_permission_level
-CREATE TABLE app_permission_level (
-    permission_level_id int  NOT NULL,
+CREATE TABLE acn.app_permission_level (
+    permission_level_id SERIAL  NOT NULL,
     permission_name varchar(30)  NOT NULL,
     CONSTRAINT app_permission_level_pk PRIMARY KEY (permission_level_id)
 );
 
 -- Table: boards
-CREATE TABLE boards (
+CREATE TABLE app.boards (
     board_id int  NOT NULL,
     name varchar(30)  NOT NULL,
     bg_color varchar(7)  NOT NULL,
@@ -30,14 +37,14 @@ CREATE TABLE boards (
 );
 
 -- Table: label_task
-CREATE TABLE label_task (
+CREATE TABLE app.label_task (
     tasks_task_id int  NOT NULL,
     labels_label_id int  NOT NULL,
     CONSTRAINT label_task_pk PRIMARY KEY (tasks_task_id,labels_label_id)
 );
 
 -- Table: labels
-CREATE TABLE labels (
+CREATE TABLE app.labels (
     label_id int  NOT NULL,
     name varchar(30)  NOT NULL,
     color varchar(7)  NOT NULL,
@@ -45,7 +52,7 @@ CREATE TABLE labels (
 );
 
 -- Table: lists
-CREATE TABLE lists (
+CREATE TABLE app.lists (
     list_id int  NOT NULL,
     list_name varchar(30)  NOT NULL,
     boards_board_id int  NOT NULL,
@@ -53,44 +60,44 @@ CREATE TABLE lists (
 );
 
 -- Table: modules
-CREATE TABLE modules (
-    module_id int  NOT NULL,
+CREATE TABLE acn.modules (
+    module_id SERIAL  NOT NULL,
     name varchar(30)  NOT NULL,
     CONSTRAINT modules_pk PRIMARY KEY (module_id)
 );
 
 -- Table: permissions
-CREATE TABLE permissions (
-    permission_id int  NOT NULL,
+CREATE TABLE acn.permissions (
+    permission_id SERIAL  NOT NULL,
     name varchar(30)  NOT NULL,
     modules_module_id int  NOT NULL,
     CONSTRAINT permissions_pk PRIMARY KEY (permission_id)
 );
 
 -- Table: role_permissions
-CREATE TABLE role_permissions (
+CREATE TABLE acn.role_permissions (
     permissions_permission_id int  NOT NULL,
     roles_roles_id int  NOT NULL,
     CONSTRAINT role_permissions_pk PRIMARY KEY (permissions_permission_id,roles_roles_id)
 );
 
 -- Table: roles
-CREATE TABLE roles (
-    role_id int  NOT NULL,
+CREATE TABLE acn.roles (
+    role_id SERIAL  NOT NULL,
     role_name varchar(30)  NOT NULL,
     role_description varchar(50)  NOT NULL,
     CONSTRAINT roles_id PRIMARY KEY (role_id)
 );
 
 -- Table: task_members
-CREATE TABLE task_members (
+CREATE TABLE app.task_members (
     users_user_id int  NOT NULL,
     tasks_task_id int  NOT NULL,
     CONSTRAINT task_members_pk PRIMARY KEY (users_user_id,tasks_task_id)
 );
 
 -- Table: tasks
-CREATE TABLE tasks (
+CREATE TABLE app.tasks (
     task_id int  NOT NULL,
     lists_list_id int  NOT NULL,
     task_name varchar(30)  NOT NULL,
@@ -103,7 +110,7 @@ CREATE TABLE tasks (
 );
 
 -- Table: user_credentials
-CREATE TABLE user_credentials (
+CREATE TABLE auth.user_credentials (
     credentials_id int  NOT NULL,
     hash varchar(255)  NOT NULL,
     salt varchar(64)  NOT NULL,
@@ -112,7 +119,7 @@ CREATE TABLE user_credentials (
 );
 
 -- Table: user_workspaces
-CREATE TABLE user_workspaces (
+CREATE TABLE app.user_workspaces (
     Workspaces_workspace_id int  NOT NULL,
     users_user_id int  NOT NULL,
     roles_roles_id int  NOT NULL,
@@ -120,7 +127,7 @@ CREATE TABLE user_workspaces (
 );
 
 -- Table: users
-CREATE TABLE users (
+CREATE TABLE auth.users (
     user_id int  NOT NULL,
     username varchar(50)  NOT NULL UNIQUE,
     email varchar(50)  NOT NULL,
@@ -128,7 +135,7 @@ CREATE TABLE users (
 );
 
 -- Table: workspaces
-CREATE TABLE workspaces (
+CREATE TABLE app.workspaces (
     workspace_id int  NOT NULL,
     name varchar(50)  NOT NULL,
     CONSTRAINT workspaces_pk PRIMARY KEY (workspace_id)
