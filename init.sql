@@ -1,7 +1,6 @@
 DROP DATABASE meraki_tasks;
-CREATE DATABASE meraki_tasks;
 
-\connect meraki_tasks;
+CREATE DATABASE meraki_tasks;
 
 SELECT current_database();
 
@@ -15,6 +14,13 @@ CREATE SCHEMA app;
 CREATE SCHEMA audit;
 
 -- tables
+
+
+CREATE SEQUENCE acn.app_permission_level_permission_level_id_seq;
+CREATE SEQUENCE acn.modules_module_id_seq;
+CREATE SEQUENCE acn.roles_role_id_seq;
+CREATE SEQUENCE audit.history_history_id_seq;
+CREATE SEQUENCE acn.permissions_permission_id_seq;
 
 -- SCHEMA AUTH
 
