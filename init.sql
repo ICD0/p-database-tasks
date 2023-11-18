@@ -1,4 +1,4 @@
-DROP DATABASE  meraki_tasks;
+DROP DATABASE meraki_tasks;
 CREATE DATABASE meraki_tasks;
 
 \connect meraki_tasks;
@@ -33,7 +33,7 @@ CREATE TABLE auth.user_credentials
     credentials_id uuid         NOT NULL,
     hash           varchar(255) NOT NULL,
     salt           varchar(64)  NOT NULL,
-    users_user_id  uuid          NOT NULL,
+    users_user_id  uuid         NOT NULL,
     CONSTRAINT user_credentials_pk PRIMARY KEY (credentials_id)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE app.boards
     board_id                                uuid        NOT NULL,
     name                                    varchar(30) NOT NULL,
     bg_color                                varchar(7)  NOT NULL,
-    workspaces_workspace_id                 uuid         NOT NULL,
+    workspaces_workspace_id                 uuid        NOT NULL,
     app_permission_level_permision_level_id int         NOT NULL,
     CONSTRAINT boards_pk PRIMARY KEY (board_id)
 );
@@ -67,7 +67,7 @@ CREATE TABLE app.lists
 (
     list_id         uuid        NOT NULL,
     list_name       varchar(30) NOT NULL,
-    boards_board_id uuid         NOT NULL,
+    boards_board_id uuid        NOT NULL,
     CONSTRAINT lists_pk PRIMARY KEY (list_id)
 );
 
@@ -99,7 +99,7 @@ CREATE TABLE app.user_workspaces
 CREATE TABLE app.task_members
 (
     users_user_id uuid NOT NULL,
-    tasks_task_id uuid  NOT NULL,
+    tasks_task_id uuid NOT NULL,
     CONSTRAINT task_members_pk PRIMARY KEY (users_user_id, tasks_task_id)
 );
 
