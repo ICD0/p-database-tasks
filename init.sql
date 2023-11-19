@@ -29,7 +29,7 @@ CREATE TABLE auth.users
 (
     user_id  uuid        NOT NULL,
     username varchar(50) NOT NULL UNIQUE,
-    email    varchar(50) NOT NULL,
+    email    varchar(50) NOT NULL UNIQUE,
     CONSTRAINT users_pk PRIMARY KEY (user_id)
 );
 
