@@ -53,6 +53,7 @@ CREATE TABLE app.workspaces
 (
     workspace_id uuid        NOT NULL,
     name         varchar(50) NOT NULL,
+    public_view   boolean,
     CONSTRAINT workspaces_pk PRIMARY KEY (workspace_id)
 );
 
@@ -65,6 +66,7 @@ CREATE TABLE app.boards
     bg_color                                varchar(7)  NOT NULL,
     workspaces_workspace_id                 uuid        NOT NULL,
     app_permission_level_permision_level_id int         NOT NULL,
+    public_view   boolean,
     CONSTRAINT boards_pk PRIMARY KEY (board_id)
 );
 
@@ -74,6 +76,7 @@ CREATE TABLE app.lists
     list_id         uuid        NOT NULL,
     list_name       varchar(30) NOT NULL,
     boards_board_id uuid        NOT NULL,
+    public_view   boolean,
     CONSTRAINT lists_pk PRIMARY KEY (list_id)
 );
 
@@ -88,6 +91,7 @@ CREATE TABLE app.tasks
     task_position    int          NOT NULL,
     finished         boolean      NOT NULL,
     overdue          boolean      NOT NULL,
+    public_view   boolean,
     CONSTRAINT tasks_pk PRIMARY KEY (task_id)
 );
 
