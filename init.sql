@@ -144,7 +144,7 @@ CREATE TABLE audit.History
     updated_at     timestamp   NOT NULL,
     action_type    varchar(30) NOT NULL,
     object_type    varchar(30) NOT NULL,
-    object_owner   int         NOT NULL,
+    object_owner   uuid         NOT NULL,
     action_user_id int         NOT NULL,
     CONSTRAINT History_pk PRIMARY KEY (history_id)
 );
