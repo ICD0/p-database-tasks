@@ -32,6 +32,7 @@ CREATE TABLE auth.users
     email    varchar(50) NOT NULL UNIQUE,
     creation_at timestamp,
     updated_at timestamp,
+    is_active bool default True,
     CONSTRAINT users_pk PRIMARY KEY (user_id)
 );
 
